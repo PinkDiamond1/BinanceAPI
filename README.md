@@ -12,7 +12,6 @@ I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyrigh
 #### Dependencies
 	pip install websocket-client (https://pypi.python.org/pypi/websocket-client)
 	pip install requests
-	brew install coreutils (I'm using gdate to get time in milliseconds)
 
 #### Import the library
 	import binance
