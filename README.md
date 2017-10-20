@@ -1,6 +1,8 @@
 # Binance Python API integration
 
-I've created an easy to use python integration with [Binance's API](https://www.binance.com/). It enables developers to skip over the lower level API programming and jump right into the fun stuff like getting prices and trading cryptocurrencies. I'm also demonstrating how to begin automating this process and make a "connected" trading bot. You can do things like: Populate a Google Drive spreadsheet with your trade results, and send your phone a push notification showing your profit when your trade order is filled.
+I've created an easy to use python integration with [Binance's API](https://www.binance.com/). It enables developers to skip over the lower level API programming and jump right into the fun stuff like getting prices and trading cryptocurrencies. I'm also demonstrating how to begin automating this process and make a "connected" trading bot. You can do things like: Populate a Google Drive spreadsheet with your trade results, and send your phone a push notification showing your profit when your trade order is filled. 
+
+This library uses all aspects of Binance's APIs, comes with a built in logging mechanism, and does the heavy lifting for you. 
 
 #### Installation
     git clone https://github.com/lampshade9909/BinanceAPI
@@ -126,13 +128,15 @@ I've created an easy to use python integration with [Binance's API](https://www.
 ####  Automate your Binance trading experience with Stringify	
 ![alt text](https://i.imgur.com/RydTB09.png)
 
-Binance's API + automation = fun.  Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
-Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's notifications.  So everytime my program makes a trade, it sends me a notification and logs it to Google Drive.  
+Binance's API + Automation = fun. Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
+Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's notifications. So everytime my program makes a trade, it sends me a notification and logs it to Google Drive.  
 
 	stringifyMakerURLgoesHere = "https://webhooks.stringify.com/v1/events/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG/1/8a6e11d394fb9ac1af60b789d6e95537/TMSooXKVpJNRZ5choay3"
 	API_Post_Stringify("Bought 100 BNB on Binance!", stringifyMakerURLgoesHere)
 	
 ![alt text](https://i.imgur.com/yxtboiV.png)
+
+Set up a [Stringify account](https://www.stringify.com/) with the mobile apps.  
 
 ####  Websockets
     websocket.enableTrace(True)
