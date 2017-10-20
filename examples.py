@@ -111,6 +111,10 @@ PrintAndLog("topNAsks = " + str(topNAsks))
 # # Get aggregate trades
 # binance.API_Get_AggregateTrades("SNTETH")
 
+# Withdraw tokens to your wallet
+# Note, this API doesn't work yet. Wait for Binance to fix it.
+# binance.API_Post_Withdraw("ETH", "walletAddress", 0.011)
+
 
 # Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc all
 # You can have your program/bot/whatever log your transactions and balances to Google Drive or send your iPhone/Android phone push notifications.

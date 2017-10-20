@@ -12,7 +12,7 @@ import sys, traceback
 import json
 import hmac
 import hashlib
-import subprocess
+import time
 
 
 APIKey_Binance = None
@@ -248,8 +248,7 @@ def API_Get_AggregateTrades(symbol, recvWindow=5000):
 
 
 def GetTimeStamp():
-    # Get the timestamp in milliseconds
-    timeStamp = str(long(subprocess.check_output("gdate +%s%3N", shell=True)))
+    timeStamp = str(long(round(time.time() * 1000)))
     return timeStamp
 
 
@@ -482,3 +481,31 @@ def API_Get_AccountInfo(recvWindow=5000):
         PrintAndLog("response = " + str(response.content))
         response.raise_for_status()
 
+
+# Waiting for this API to be finished.  Do not use yet
+# def API_Post_Withdraw(asset, address, amount, recvWindow=5000):
+#     if not IsAPIKeySecretSet():
+#         raise Exception('API Key or Secret is not set. Set that before making this call.')
+#
+#     timeStamp = GetTimeStamp()
+#     totalParams = "asset=" + asset.upper() + "&address=" + address + "&amount=" + str(amount) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
+#
+#     PrintAndLog("totalParams = " + totalParams)
+#     signature = GetBinanceSignature(totalParams)
+#     PrintAndLog("signature = " + signature)
+#
+#     url = "https://www.binance.com/wapi/v1/withdraw.html?" + totalParams + "&signature=" + signature
+#     PrintAndLog("url = " + url)
+#
+#     response = requests.post(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
+#     if (response.ok):
+#         responseData = response.content
+#         jData = json.loads(responseData)
+#
+#         PrintAndLog("API_Post_Withdraw jData = " + str(jData))
+#         return jData
+#
+#     else:
+#         # If response code is not ok (200), print the resulting http error code with description
+#         PrintAndLog("response = " + str(response.content))
+#         response.raise_for_status()
