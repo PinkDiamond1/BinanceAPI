@@ -14,6 +14,8 @@ import sys, traceback
 import time
 
 
+# Make an API call to Stringify's Maker thing to automate your script
+# https://search.stringify.com/things/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG_1
 def API_Post_Stringify(message, stringifyMakerUrl):
     try:
         data = message

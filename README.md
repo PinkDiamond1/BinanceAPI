@@ -2,7 +2,9 @@
 
 I've created an easy to use python integration with [Binance's API](https://www.binance.com/). It enables developers to skip over the lower level API programming and jump right into the fun stuff like getting prices and trading cryptocurrencies. I'm also demonstrating how to begin automating this process and make a "connected" trading bot. You can do things like: Populate a Google Drive spreadsheet with your trade results, and send your phone a push notification showing your profit when your trade order is filled. 
 
-This library is very easy to use, has a built in logging mechanism, does the heavy lifting with all of your API components, and introduces the developer to powerful automation features.  
+This library is very easy to use, has a built in logging mechanism, does the heavy lifting with all of your Binance's APIs, and introduces developers to powerful automation features that can be tied into your program.
+
+I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
 
 #### Installation
     git clone https://github.com/lampshade9909/BinanceAPI
@@ -10,18 +12,17 @@ This library is very easy to use, has a built in logging mechanism, does the hea
 #### Dependencies
 	pip install websocket-client (https://pypi.python.org/pypi/websocket-client)
 	pip install requests
-	brew install coreutils (using gdate to get time in milliseconds)
+	brew install coreutils (I'm using gdate to get time in milliseconds)
 
+#### Import the library
+	import binance
+	
 #### To run examples
 	# Choose which function to call via uncommenting/commenting the source within examples.py, then run:
 	python examples.py
 	
 	# Choose which websocket URL to subscribe to via uncommenting/commenting the source within examples_websockets.py, then run:
 	python examples_websockets.py 
-	
-	
-#### Import the library
-	import binance
 	
 #### Set your API Key and Secret	
 	binance.SetAPIKey("APIKeyGoesHere")
@@ -44,7 +45,7 @@ This library is very easy to use, has a built in logging mechanism, does the hea
 	# balance_bnb = {u'locked': u'0.00000000', u'asset': u'BNB', u'free': u'2.99593206'}
 	# balance_eth = {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956'}
 	
-####  Get all prices
+####  Get prices
 	allPrices = binance.API_Get_Markets_Binance()
 	
 	# Or get one price at a time
@@ -83,7 +84,7 @@ This library is very easy to use, has a built in logging mechanism, does the hea
 ####  Sell market iceberg order
 	binance.API_Post_SellMarketOrder_Binance("ETHBTC", 0.01, 0.0025)
 
-####  Get the status of an order, given orderId
+####  Get the status of an order
 	binance.API_Get_OrderStatus_Binance("SNTETH", "1866448")
 	
 	#{
@@ -127,19 +128,6 @@ This library is very easy to use, has a built in logging mechanism, does the hea
 ####  Get aggregate trades
 	binance.API_Get_AggregateTrades_Binance("SNTETH")
 	
-####  Automate your Binance trading experience with Stringify	
-![alt text](https://i.imgur.com/RydTB09.png)
-
-Binance's API + Automation = fun. Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
-Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's notifications. So everytime my program makes a trade, it sends me a notification and logs it to Google Drive.  
-
-	stringifyMakerURLgoesHere = "https://webhooks.stringify.com/v1/events/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG/1/8a6e11d394fb9ac1af60b789d6e95537/TMSooXKVpJNRZ5choay3"
-	API_Post_Stringify("Bought 100 BNB on Binance!", stringifyMakerURLgoesHere)
-	
-![alt text](https://i.imgur.com/yxtboiV.png)
-
-Set up a [Stringify account](https://www.stringify.com/) with the iOS or Android mobile apps to configure your automations with Binance.  
-
 ####  Websockets
     websocket.enableTrace(True)
 
@@ -170,6 +158,29 @@ Set up a [Stringify account](https://www.stringify.com/) with the iOS or Android
 
 From here, you can update your UI or your program's behavior with this real-time data from websockets.
 
-Note: the library generates a log file called "logfile".
+Note: this library generates a log file called "logfile" which helps you debug and track transactions.
 
-I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
+####  Automate your Binance trading experience with Stringify	
+![alt text](https://i.imgur.com/RydTB09.png)
+"When my bot makes a trade, send my phone a notification and log it to a Google Drive spreadsheet."
+
+Binance's API + Automation = fun. Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
+Here, i've connected my Google Drive spreadsheet and my iPhone/Android notifications. So everytime my bot makes a trade, it sends me a notification and logs it to Google Drive. I can use this to track profits and make sure it's running properly. 
+
+	stringifyMakerURLgoesHere = "https://webhooks.stringify.com/v1/events/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG/1/8a6e11d394fb9ac1af60b789d6e95537/TMSooXKVpJNRZ5choay3"
+	API_Post_Stringify("Bought 100 BNB on Binance!", stringifyMakerURLgoesHere)
+	
+![alt text](https://i.imgur.com/yxtboiV.png)
+
+Set up a [Stringify account](https://www.stringify.com/) with your iOS or Android mobile device. You can download it in the App Store or Google Play. 
+
+Next, import this flow: ["When my bot makes a trade, send my phone a notification and log it to a Google Drive spreadsheet."](https://app.stringify.com/flow/ebtuMIcbGogPxvr7Etlh)
+
+![alt text](https://i.imgur.com/m8TSfvO.png)
+Your Binance trading bot will be the trigger on the left. It will trigger this automation and pass a message to your phone notification or Google Drive thing on the right. 
+
+![alt text](https://i.imgur.com/vWiofnw.png)
+The Maker thing on the left generates a URL to which the API_Post_Stringify method can make a REST request.
+
+![alt text](https://i.imgur.com/MssRmyy.png)![alt text](https://i.imgur.com/J5lRaCc.png)
+The notification and Google Drive things get configured such that the data from the Binance bot gets sent to them. 
