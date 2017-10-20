@@ -160,12 +160,12 @@ From here, you can update your UI or your program's behavior with this real-time
 
 Note: this library generates a log file called "logfile" which helps you debug and track transactions.
 
-####  Automate your Binance trading experience with Stringify	
+####  Binance's API + Automation = Next Level Trading
 ![alt text](https://i.imgur.com/RydTB09.png)
 
 "When my bot makes a trade, send my phone a notification and log it to a Google Drive spreadsheet."
 
-Binance's API + Automation = fun. Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
+Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
 Here, i've connected my Google Drive spreadsheet and my iPhone/Android notifications. So everytime my bot makes a trade, it sends me a notification and logs it to Google Drive. I can use this to track profits and make sure it's running properly. 
 
 	stringifyMakerURLgoesHere = "https://webhooks.stringify.com/v1/events/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG/1/8a6e11d394fb9ac1af60b789d6e95537/TMSooXKVpJNRZ5choay3"
