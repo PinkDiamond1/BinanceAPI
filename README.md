@@ -48,9 +48,11 @@ I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyrigh
 </pre>
 </details>
 	
-####  Get the top 10 bids and/or asks for a symbol
+####  Get the top n bids and/or asks for a symbol
+	# Get to 10 in separate calls
 	topNBids = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "bids")
 	topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "asks")
+	# Get top 10 in one single call
 	topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "both")
 <details><summary>Show Output</summary>
 <pre>
@@ -60,13 +62,19 @@ topNAsks = [[u'0.00410829', u'2000.00000000', []], [u'0.00410830', u'324.0000000
 </details>
 
 ####  Get account info, free/locked balances, etc
+	# Get all account info
 	allInfo = binance.API_Get_AccountInfo_Binance()
-	
-	# Or get one at a time
+	# Or get only asset balances for one symbol at a time
 	balance_bnb = binance.API_Get_Balance_Binance("bnb")
 	balance_eth = binance.API_Get_Balance_Binance("eth")
-	# balance_bnb = {u'locked': u'0.00000000', u'asset': u'BNB', u'free': u'2.99593206'}
-	# balance_eth = {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956'}
+<details><summary>Show Output</summary>
+<pre>
+info = {u'buyerCommission': 0, u'canWithdraw': True, u'takerCommission': 10, u'canTrade': True, u'makerCommission': 10, u'balances': [{u'locked': u'0.00000000', u'asset': u'BTC', u'free': u'0.00053875'}, {u'locked': u'0.00000000', u'asset': u'LTC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956'}, {u'locked': u'0.00000000', u'asset': u'BNC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ICO', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'NEO', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'BNB', u'free': u'22.99593206'}, {u'locked': u'0.00000000', u'asset': u'123', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'456', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'QTUM', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'EOS', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'SNT', u'free': u'35.08000000'}, {u'locked': u'0.00000000', u'asset': u'BNT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'GAS', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'BCC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'BTM', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'USDT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'HCC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'HSR', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'OAX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'DNT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'MCO', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ICN', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ELC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'PAY', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ZRX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'OMG', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'WTC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'LRX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'YOYO', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'LRC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'LLT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'TRX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'FID', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'SNGLS', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'STRAT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'BQX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'FUN', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'KNC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'CDT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'XVG', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'IOTA', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'SNM', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'LINK', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'CVC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'TNT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'REP', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'CTR', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'MDA', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'MTL', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'SALT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'NULS', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'SUB', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'STX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'MTH', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'CAT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ADX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'PIX', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ETC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ENG', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'ZEC', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'AST', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'1ST', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'GNT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'DGD', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'BAT', u'free': u'0.00000000'}, {u'locked': u'0.00000000', u'asset': u'DASH', u'free': u'0.00000000'}], u'sellerCommission': 0, u'canDeposit': True}
+
+balance_bnb = {u'locked': u'0.00000000', u'asset': u'BNB', u'free': u'2.99593206'}
+balance_eth = {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956'}
+</pre>
+</details>
 	
 ####  Get prices
 	allPrices = binance.API_Get_Markets_Binance()
