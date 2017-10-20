@@ -23,10 +23,17 @@
 	binance.API_Get_Orders_Binance("BNBETH")
 	
 ####  Get the top n bids and/or asks for a symbol
-	topNBids = binance.API_Get_TopNOrders_Binance("ZRXETH", 10, "bids")
-	topNAsks = binance.API_Get_TopNOrders_Binance("ZRXETH", 10, "asks")
-	topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("ZRXETH", 10, "both")
+	topNBids = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "bids")
+	topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "asks")
+	topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "both")
 
-
+####  Get account info, free/locked balances, etc
+	info = binance.API_Get_AccountInfo_Binance()
+	
+	# or get one at a time
+	balance_bnb = binance.API_Get_Balance_Binance("bnb")
+	balance_eth = binance.API_Get_Balance_Binance("eth")
+	# Sample output: balance_eos = {u'locked': u'0.00000000', u'asset': u'BNB', u'free': u'2.99593206'}
+	# Sample output: balance_eth = {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956'}
 
 I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
