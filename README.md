@@ -566,6 +566,43 @@ openSellOrders =
 
 ####  Get aggregate trades
 	binance.API_Get_AggregateTrades_Binance("SNTETH")
+	<details><summary>Show Output</summary>
+<pre>
+[
+  {
+    u'a': 385889,
+    u'f': 392591,
+    u'M': True,
+    u'm': True,
+    u'l': 392591,
+    u'q': u'6714.00000000',
+    u'p': u'0.00008868',
+    u'T': 1508511121096
+  },
+  {
+    u'a': 385890,
+    u'f': 392592,
+    u'M': True,
+    u'm': True,
+    u'l': 392592,
+    u'q': u'4769.00000000',
+    u'p': u'0.00008867',
+    u'T': 1508511121208
+  },
+  ...
+  {
+    u'a': 386388,
+    u'f': 393107,
+    u'M': True,
+    u'm': True,
+    u'l': 393107,
+    u'q': u'1923.00000000',
+    u'p': u'0.00008684',
+    u'T': 1508520765652
+  }
+]
+</pre>
+</details>
 	
 ####  Websockets
     websocket.enableTrace(True)
@@ -575,8 +612,9 @@ openSellOrders =
     ws = websocket.WebSocketApp(url, on_message = on_message, on_error = on_error, on_close = on_close)
     ws.on_open = on_open
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
-	
-	--- response header --- 
+<details><summary>Show Output</summary>
+<pre>
+--- response header --- 
 	HTTP/1.1 101 Switching Protocols 
 	Date: Fri, 20 Oct 2017 00:54:25 GMT 
 	Connection: upgrade 
@@ -594,6 +632,8 @@ openSellOrders =
 	{"e":"depthUpdate","E":1508460868902,"s":"ETHBTC","U":17570143,"u":17570147,"b":[["0.05382500","10.35900000",[]],["0.05382400","0.00000000",[]],["0.05101500","11.25000000",[]]],"a":[["0.05405800","15.00000000",[]],["0.05405900","0.00000000",[]]]}
 	
 	{"e":"depthUpdate","E":1508460869902,"s":"ETHBTC","U":17570148,"u":17570152,"b":[["0.05384400","10.35900000",[]],["0.05382500","0.00000000",[]]],"a":[["0.05405800","0.00000000",[]],["0.05406200","15.00000000",[]],["0.05428300","0.00000000",[]]]}
+</pre>
+</details>
 
 From here, you can update your UI or your program's behavior with this real-time data from websockets.
 
