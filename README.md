@@ -134,5 +134,34 @@ Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's 
 	
 ![alt text](https://i.imgur.com/yxtboiV.png)
 
+####  Websockets
+    websocket.enableTrace(True)
+
+    # Choose which URL you'd like to subscribe to
+    url = "wss://stream.binance.com:9443/ws/ethbtc@depth"
+    ws = websocket.WebSocketApp(url, on_message = on_message, on_error = on_error, on_close = on_close)
+    ws.on_open = on_open
+    ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
+	
+	--- response header --- 
+	HTTP/1.1 101 Switching Protocols 
+	Date: Fri, 20 Oct 2017 00:54:25 GMT 
+	Connection: upgrade 
+	Expires: Thu, 01 Jan 1970 00:00:01 GMT 
+	Cache-Control: no-cache, no-store, must-revalidate 
+	Upgrade: WebSocket 
+	Sec-WebSocket-Accept: eUVrgdbvaqvV5ku28oQKabQ3S2U= 
+	----------------------- 
+	{"e":"depthUpdate","E":1508460865901,"s":"ETHBTC","U":17570121,"u":17570130,"b":[["0.05383600","0.00000000",[]],["0.05382000","10.10900000",[]],["0.05099200","2.25000000",[]]],"a":[["0.05406100","15.00000000",[]],["0.05406200","0.00000000",[]],["0.05406600","0.00000000",[]],["0.05406700","0.00000000",[]],["0.05686700","0.00000000",[]]]}
+	
+	{"e":"depthUpdate","E":1508460866901,"s":"ETHBTC","U":17570131,"u":17570138,"b":[["0.05382400","10.20900000",[]],["0.05382000","0.00000000",[]],["0.05099200","0.00000000",[]]],"a":[["0.05406000","15.00000000",[]],["0.05406100","0.00000000",[]],["0.05683400","18.30100000",[]]]}
+	
+	{"e":"depthUpdate","E":1508460867901,"s":"ETHBTC","U":17570139,"u":17570142,"b":[],"a":[["0.05405900","14.95000000",[]],["0.05406000","0.00000000",[]]]}
+	
+	{"e":"depthUpdate","E":1508460868902,"s":"ETHBTC","U":17570143,"u":17570147,"b":[["0.05382500","10.35900000",[]],["0.05382400","0.00000000",[]],["0.05101500","11.25000000",[]]],"a":[["0.05405800","15.00000000",[]],["0.05405900","0.00000000",[]]]}
+	
+	{"e":"depthUpdate","E":1508460869902,"s":"ETHBTC","U":17570148,"u":17570152,"b":[["0.05384400","10.35900000",[]],["0.05382500","0.00000000",[]]],"a":[["0.05405800","0.00000000",[]],["0.05406200","15.00000000",[]],["0.05428300","0.00000000",[]]]}
+
+
 
 I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
