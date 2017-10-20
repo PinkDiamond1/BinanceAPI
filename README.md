@@ -9,6 +9,7 @@ This library uses all aspects of Binance's APIs, comes with a built in logging m
 
 #### Dependencies
 	pip install websocket-client (https://pypi.python.org/pypi/websocket-client)
+	pip install requests
 
 #### To run examples
 	# Choose which function to call via uncommenting/commenting the source within examples.py, then run:
