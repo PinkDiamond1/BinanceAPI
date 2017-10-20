@@ -30,9 +30,9 @@ I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyrigh
 	
 #### Ping and server time
 	# Ping the API
-	binance.API_Get_Ping_Binance()
+	binance.API_Get_Ping()
 	# Get current Time
-	binance.API_Get_Time_Binance()
+	binance.API_Get_Time()
 <details><summary>Show Output</summary>
 <pre>
 {}
@@ -41,7 +41,7 @@ I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyrigh
 </details>
 	
 #### Get orders for a symbol
-	orders = binance.API_Get_Orders_Binance("BNBETH")
+	orders = binance.API_Get_Orders("BNBETH")
 <details><summary>Show Output</summary>
 <pre>
 {
@@ -88,10 +88,10 @@ I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyrigh
 	
 ####  Get the top n bids and/or asks for a symbol
 	# Get to 10 in separate calls
-	topNBids = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "bids")
-	topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "asks")
+	topNBids = binance.API_Get_TopNOrders("BNBETH", 10, "bids")
+	topNAsks = binance.API_Get_TopNOrders("BNBETH", 10, "asks")
 	# Get top 10 in one single call
-	topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "both")
+	topNBids, topNAsks = binance.API_Get_TopNOrders("BNBETH", 10, "both")
 <details><summary>Show Output</summary>
 <pre>
 topNBids = 
@@ -205,10 +205,10 @@ topNAsks =
 
 ####  Get account info, free/locked balances, etc
 	# Get all account info
-	allInfo = binance.API_Get_AccountInfo_Binance()
+	allInfo = binance.API_Get_AccountInfo()
 	# Or get only asset balances for one symbol at a time
-	balance_bnb = binance.API_Get_Balance_Binance("bnb")
-	balance_eth = binance.API_Get_Balance_Binance("eth")
+	balance_bnb = binance.API_Get_Balance("bnb")
+	balance_eth = binance.API_Get_Balance("eth")
 <details><summary>Show Output</summary>
 <pre>
 allInfo = 
@@ -252,9 +252,9 @@ balance_eth = {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956
 	
 ####  Get prices
 	# One at a time
-	BNB = binance.API_Get_Price_Binance("BNB")
+	BNB = binance.API_Get_Price("BNB")
 	# All at once
-	markets = binance.API_Get_Markets_Binance()
+	markets = binance.API_Get_Markets()
 <details><summary>Show Output</summary>
 <pre>
 BNB = {u'symbol': u'BNBBTC', u'price': u'0.00021087'}
@@ -287,7 +287,7 @@ markets =
 </details>
 	
 ####  Buy limit order
-	binance.API_Post_BuyLimitOrder_Binance("SNTETH", 131, "0.00008111")
+	binance.API_Post_BuyLimitOrder("SNTETH", 131, "0.00008111")
 <details><summary>Show Output</summary>
 <pre>
 {
@@ -307,22 +307,22 @@ markets =
 </details>
 	
 ####  Sell limit order
-	binance.API_Post_SellLimitOrder_Binance("SNTETH", 120, "0.00009049")
+	binance.API_Post_SellLimitOrder("SNTETH", 120, "0.00009049")
 	
 ####  Buy market order
-	binance.API_Post_BuyMarketOrder_Binance("SNTETH", 30)
+	binance.API_Post_BuyMarketOrder("SNTETH", 30)
 	
 ####  Sell market order
-	binance.API_Post_SellMarketOrder_Binance("SNTETH", 50)
+	binance.API_Post_SellMarketOrder("SNTETH", 50)
 
 ####  Buy limit iceberg order
-	binance.API_Post_BuyLimitOrder_Binance("ETHBTC", 0.01, "0.054", 0.0025)
+	binance.API_Post_BuyLimitOrder("ETHBTC", 0.01, "0.054", 0.0025)
 	
 ####  Sell market iceberg order
-	binance.API_Post_SellMarketOrder_Binance("ETHBTC", 0.01, 0.0025)
+	binance.API_Post_SellMarketOrder("ETHBTC", 0.01, 0.0025)
 
 ####  Get the status of an order
-	binance.API_Get_OrderStatus_Binance("SNTETH", "1866448")
+	binance.API_Get_OrderStatus("SNTETH", "1866448")
 <details><summary>Show Output</summary>
 <pre>
 {
@@ -344,7 +344,7 @@ markets =
 </details>
 
 ####  Delete an open order
-	binance.API_Delete_Order_Binance("SNTETH", "1866448")
+	binance.API_Delete_Order("SNTETH", "1866448")
 <details><summary>Show Output</summary>
 <pre>
 {
@@ -358,11 +358,11 @@ markets =
 	
 ####  Get open orders
 	# All open orders
-	openOrders = binance.API_Get_OpenOrders_Binance("BNBETH")
+	openOrders = binance.API_Get_OpenOrders("BNBETH")
 	# Only open buy orders
-	openBuyOrders = binance.API_Get_OpenBuyOrders_Binance("BNBETH")
+	openBuyOrders = binance.API_Get_OpenBuyOrders("BNBETH")
 	# Only open sell orders
-	openSellOrders = binance.API_Get_OpenSellOrders_Binance("BNBETH")
+	openSellOrders = binance.API_Get_OpenSellOrders("BNBETH")
 <details><summary>Show Output</summary>
 <pre>
 openOrders = 
@@ -438,7 +438,7 @@ openSellOrders =
 </details>
 
 ####  Get trade history
-	binance.API_Get_TradeHistory_Binance("SNTETH")
+	binance.API_Get_TradeHistory("SNTETH")
 <details><summary>Show Output</summary>
 <pre>
 [
@@ -484,7 +484,7 @@ openSellOrders =
 </details>
 
 ####  Get 24 hour ticker price change stats
-	binance.API_Get_24TickerPriceChange_Binance("SNTETH")
+	binance.API_Get_24TickerPriceChange("SNTETH")
 <details><summary>Show Output</summary>
 <pre>
 {
@@ -513,7 +513,7 @@ openSellOrders =
 </details>
 
 ####  Get Kline/Candlestick data given interval
-	binance.API_Get_KlineCandlestick_Binance("SNTETH", "30m")
+	binance.API_Get_KlineCandlestick("SNTETH", "30m")
 <details><summary>Show Output</summary>
 <pre>
 [
@@ -565,7 +565,7 @@ openSellOrders =
 </details>
 
 ####  Get aggregate trades
-	binance.API_Get_AggregateTrades_Binance("SNTETH")
+	binance.API_Get_AggregateTrades("SNTETH")
 	<details><summary>Show Output</summary>
 <pre>
 [

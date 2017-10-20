@@ -48,7 +48,7 @@ def GetBinanceHeader():
     return headers_Binance
 
 
-def API_Get_Ping_Binance():
+def API_Get_Ping():
     url = URL_Binance_Base + "v1/ping"
     PrintAndLog("url = " + url)
 
@@ -65,7 +65,7 @@ def API_Get_Ping_Binance():
         response.raise_for_status()
 
 
-def API_Get_Time_Binance():
+def API_Get_Time():
     url = URL_Binance_Base + "v1/time"
     PrintAndLog("url = " + url)
 
@@ -82,12 +82,12 @@ def API_Get_Time_Binance():
         response.raise_for_status()
 
 
-def API_Get_TopNOrders_Binance(symbol, n, side):
+def API_Get_TopNOrders(symbol, n, side):
     if side.lower() != "bids" and side.lower() != "asks" and side.lower() != "both":
         raise ValueError('side must be either bids, asks, or both')
 
     else:
-        ordersJData = API_Get_Orders_Binance(symbol)
+        ordersJData = API_Get_Orders(symbol)
         # PrintAndLog("type(ordersJData) = " + str(type(ordersJData)))
         # PrintAndLog("type(ordersJData['bids']) = " + str(type(ordersJData['bids'])))
         # PrintAndLog("type(ordersJData['asks']) = " + str(type(ordersJData['asks'])))
@@ -105,7 +105,7 @@ def API_Get_TopNOrders_Binance(symbol, n, side):
         return returnList
 
 
-def API_Get_Orders_Binance(symbol):
+def API_Get_Orders(symbol):
     url = URL_Binance_Base + "v1/depth?symbol=" + str(symbol)
     PrintAndLog("url = " + url)
     # headers_local = {'content-type': 'application/json'}
@@ -124,8 +124,8 @@ def API_Get_Orders_Binance(symbol):
         response.raise_for_status()
 
 
-def API_Get_Price_Binance(symbol):
-    marketsJData = API_Get_Markets_Binance()
+def API_Get_Price(symbol):
+    marketsJData = API_Get_Markets()
 
     for market in marketsJData:
         firstFew = market['symbol'][:len(symbol)]
@@ -135,7 +135,7 @@ def API_Get_Price_Binance(symbol):
             return market
 
 
-def API_Get_Markets_Binance():
+def API_Get_Markets():
     url = URL_Binance_Base + "v1/ticker/allPrices"
     PrintAndLog("url = " + url)
     # headers_local = {'content-type': 'application/json'}
@@ -154,8 +154,8 @@ def API_Get_Markets_Binance():
         response.raise_for_status()
 
 
-def API_Get_TradeHistory_Binance(symbol, recvWindow=5000):
-    timeStamp = GetTimeStamp_Binance()
+def API_Get_TradeHistory(symbol, recvWindow=5000):
+    timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
@@ -178,7 +178,7 @@ def API_Get_TradeHistory_Binance(symbol, recvWindow=5000):
         response.raise_for_status()
 
 
-def API_Get_24TickerPriceChange_Binance(symbol):
+def API_Get_24TickerPriceChange(symbol):
     url = URL_Binance_Base + "v1/ticker/24hr?symbol=" + str(symbol)
     PrintAndLog("url = " + url)
 
@@ -196,7 +196,7 @@ def API_Get_24TickerPriceChange_Binance(symbol):
         response.raise_for_status()
 
 
-def API_Get_KlineCandlestick_Binance(symbol, interval):
+def API_Get_KlineCandlestick(symbol, interval):
     url = URL_Binance_Base + "v1/klines?symbol=" + str(symbol) + "&interval=" + str(interval)
     PrintAndLog("url = " + url)
 
@@ -214,7 +214,7 @@ def API_Get_KlineCandlestick_Binance(symbol, interval):
         response.raise_for_status()
 
 
-def API_Get_AggregateTrades_Binance(symbol, recvWindow=5000):
+def API_Get_AggregateTrades(symbol, recvWindow=5000):
     url = URL_Binance_Base + "v1/aggTrades?symbol=" + str(symbol)
 
     PrintAndLog("url = " + url)
@@ -233,20 +233,20 @@ def API_Get_AggregateTrades_Binance(symbol, recvWindow=5000):
         response.raise_for_status()
 
 
-def GetTimeStamp_Binance():
+def GetTimeStamp():
     # Get the timestamp in milliseconds
     timeStamp = str(long(subprocess.check_output("gdate +%s%3N", shell=True)))
     return timeStamp
 
 
-def API_Post_BuyLimitOrder_Binance(symbol, quantity, price, icebergQty=None, stopPrice=None, recvWindow=5000):
-    return API_Post_LimitOrder_Binance(symbol, "buy", quantity, price, icebergQty, stopPrice, recvWindow)
+def API_Post_BuyLimitOrder(symbol, quantity, price, icebergQty=None, stopPrice=None, recvWindow=5000):
+    return API_Post_LimitOrder(symbol, "buy", quantity, price, icebergQty, stopPrice, recvWindow)
 
-def API_Post_SellLimitOrder_Binance(symbol, quantity, price, icebergQty=None, stopPrice=None, recvWindow=5000):
-    return API_Post_LimitOrder_Binance(symbol, "sell", quantity, price, icebergQty, stopPrice, recvWindow)
+def API_Post_SellLimitOrder(symbol, quantity, price, icebergQty=None, stopPrice=None, recvWindow=5000):
+    return API_Post_LimitOrder(symbol, "sell", quantity, price, icebergQty, stopPrice, recvWindow)
 
-def API_Post_LimitOrder_Binance(symbol, side, quantity, priceString, icebergQty, stopPrice, recvWindow):
-    timeStamp = GetTimeStamp_Binance()
+def API_Post_LimitOrder(symbol, side, quantity, priceString, icebergQty, stopPrice, recvWindow):
+    timeStamp = GetTimeStamp()
 
     if side.lower() == "buy" or side.lower() == "sell":
         side = side.upper()
@@ -283,14 +283,14 @@ def API_Post_LimitOrder_Binance(symbol, side, quantity, priceString, icebergQty,
         response.raise_for_status()
 
 
-def API_Post_BuyMarketOrder_Binance(symbol, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
-    return API_Post_MarketOrder_Binance(symbol, "buy", quantity, icebergQty, stopPrice, recvWindow)
+def API_Post_BuyMarketOrder(symbol, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
+    return API_Post_MarketOrder(symbol, "buy", quantity, icebergQty, stopPrice, recvWindow)
 
-def API_Post_SellMarketOrder_Binance(symbol, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
-    return API_Post_MarketOrder_Binance(symbol, "sell", quantity, icebergQty, stopPrice, recvWindow)
+def API_Post_SellMarketOrder(symbol, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
+    return API_Post_MarketOrder(symbol, "sell", quantity, icebergQty, stopPrice, recvWindow)
 
-def API_Post_MarketOrder_Binance(symbol, side, quantity, icebergQty, stopPrice, recvWindow):
-    timeStamp = GetTimeStamp_Binance()
+def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWindow):
+    timeStamp = GetTimeStamp()
 
     if side.lower() == "buy" or side.lower() == "sell":
         side = side.upper()
@@ -327,8 +327,8 @@ def API_Post_MarketOrder_Binance(symbol, side, quantity, icebergQty, stopPrice, 
         response.raise_for_status()
 
 
-def API_Get_OrderStatus_Binance(symbol, orderId, recvWindow=5000):
-    timeStamp = GetTimeStamp_Binance()
+def API_Get_OrderStatus(symbol, orderId, recvWindow=5000):
+    timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&orderId=" + str(orderId) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
@@ -351,8 +351,8 @@ def API_Get_OrderStatus_Binance(symbol, orderId, recvWindow=5000):
         response.raise_for_status()
 
 
-def API_Delete_Order_Binance(symbol, orderId, recvWindow=5000):
-    timeStamp = GetTimeStamp_Binance()
+def API_Delete_Order(symbol, orderId, recvWindow=5000):
+    timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&orderId=" + str(orderId) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
@@ -375,8 +375,8 @@ def API_Delete_Order_Binance(symbol, orderId, recvWindow=5000):
         response.raise_for_status()
 
 
-def API_Get_OpenBuyOrders_Binance(symbol, recvWindow=5000):
-    ordersJData = API_Get_OpenOrders_Binance(symbol, recvWindow)
+def API_Get_OpenBuyOrders(symbol, recvWindow=5000):
+    ordersJData = API_Get_OpenOrders(symbol, recvWindow)
 
     returnList = []
     for order in ordersJData:
@@ -385,8 +385,8 @@ def API_Get_OpenBuyOrders_Binance(symbol, recvWindow=5000):
 
     return returnList
 
-def API_Get_OpenSellOrders_Binance(symbol, recvWindow=5000):
-    ordersJData = API_Get_OpenOrders_Binance(symbol, recvWindow)
+def API_Get_OpenSellOrders(symbol, recvWindow=5000):
+    ordersJData = API_Get_OpenOrders(symbol, recvWindow)
 
     returnList = []
     for order in ordersJData:
@@ -395,8 +395,8 @@ def API_Get_OpenSellOrders_Binance(symbol, recvWindow=5000):
 
     return returnList
 
-def API_Get_OpenOrders_Binance(symbol, recvWindow=5000):
-    timeStamp = GetTimeStamp_Binance()
+def API_Get_OpenOrders(symbol, recvWindow=5000):
+    timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
@@ -419,16 +419,16 @@ def API_Get_OpenOrders_Binance(symbol, recvWindow=5000):
         response.raise_for_status()
 
 
-def API_Get_Balance_Binance(currency):
-    accountJData = API_Get_AccountInfo_Binance()
+def API_Get_Balance(currency):
+    accountJData = API_Get_AccountInfo()
 
     for balance in accountJData['balances']:
         if currency.lower() == balance['asset'].lower():
             return balance
 
 
-def API_Get_AccountInfo_Binance(recvWindow=5000):
-    timeStamp = GetTimeStamp_Binance()
+def API_Get_AccountInfo(recvWindow=5000):
+    timeStamp = GetTimeStamp()
     totalParams = "recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
