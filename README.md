@@ -123,10 +123,10 @@ I've created an easy to use python integration with Binance's API. It enables de
 ####  Get aggregate trades
 	binance.API_Get_AggregateTrades_Binance("SNTETH")
 	
-	
-![alt text](https://i.imgur.com/Gch6ua2.png)
-
 ####  Automate your Binance trading experience with Stringify	
+![alt text](https://i.imgur.com/RydTB09.png)
+
+####  Here's how you do it
 	# Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
 	# Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's notifications.  So everytime my program makes a trade, it sends me a notification and logs it to Google Drive.  
 	# Binance's API + automation = fun.
