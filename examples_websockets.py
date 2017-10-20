@@ -13,15 +13,13 @@ import requests
 import json
 import sys, traceback
 import time
-
-
-# Websocket example was referenced from: https://pypi.python.org/pypi/websocket-client
-# Install using command: pip install websocket-client
-
 import websocket
 import thread
 import time
 import ssl
+
+# Websocket example was referenced from: https://pypi.python.org/pypi/websocket-client
+# Install using command: pip install websocket-client
 
 def on_message(ws, message):
     PrintAndLog(str(message))

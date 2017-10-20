@@ -33,6 +33,17 @@ def SetAPISecret(secret):
     APISecret_Binance = secret
 
 
+def IsAPIKeySecretSet():
+    global APIKey_Binance
+    global APISecret_Binance
+
+    if APIKey_Binance and APISecret_Binance:
+        return True
+
+    else:
+        return False
+
+
 def GetBinanceSignature(totalParams):
     global APISecret_Binance
     print "APISecret_Binance = ", APISecret_Binance
@@ -155,6 +166,9 @@ def API_Get_Markets():
 
 
 def API_Get_TradeHistory(symbol, recvWindow=5000):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
@@ -246,6 +260,9 @@ def API_Post_SellLimitOrder(symbol, quantity, price, icebergQty=None, stopPrice=
     return API_Post_LimitOrder(symbol, "sell", quantity, price, icebergQty, stopPrice, recvWindow)
 
 def API_Post_LimitOrder(symbol, side, quantity, priceString, icebergQty, stopPrice, recvWindow):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
 
     if side.lower() == "buy" or side.lower() == "sell":
@@ -290,6 +307,9 @@ def API_Post_SellMarketOrder(symbol, quantity, icebergQty=None, stopPrice=None, 
     return API_Post_MarketOrder(symbol, "sell", quantity, icebergQty, stopPrice, recvWindow)
 
 def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWindow):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
 
     if side.lower() == "buy" or side.lower() == "sell":
@@ -328,6 +348,9 @@ def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWind
 
 
 def API_Get_OrderStatus(symbol, orderId, recvWindow=5000):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&orderId=" + str(orderId) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
@@ -352,6 +375,9 @@ def API_Get_OrderStatus(symbol, orderId, recvWindow=5000):
 
 
 def API_Delete_Order(symbol, orderId, recvWindow=5000):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&orderId=" + str(orderId) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
@@ -396,6 +422,9 @@ def API_Get_OpenSellOrders(symbol, recvWindow=5000):
     return returnList
 
 def API_Get_OpenOrders(symbol, recvWindow=5000):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)
@@ -428,6 +457,9 @@ def API_Get_Balance(currency):
 
 
 def API_Get_AccountInfo(recvWindow=5000):
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
     timeStamp = GetTimeStamp()
     totalParams = "recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
     PrintAndLog("totalParams = " + totalParams)

@@ -100,16 +100,16 @@ PrintAndLog("topNAsks = " + str(topNAsks))
 # PrintAndLog("openSellOrders = " + str(openSellOrders))
 
 # Get trade history
-# binance.API_Get_TradeHistory("SNTETH")
+binance.API_Get_TradeHistory("SNTETH")
 
 # Get 24 hour ticker price change stats
-# binance.API_Get_24TickerPriceChange("SNTETH")
+binance.API_Get_24TickerPriceChange("SNTETH")
 
 # Get Kline/Candlestick data given interval: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
-# binance.API_Get_KlineCandlestick("SNTETH", "30m")
+binance.API_Get_KlineCandlestick("SNTETH", "30m")
 
 # Get aggregate trades
-# binance.API_Get_AggregateTrades("SNTETH")
+binance.API_Get_AggregateTrades("SNTETH")
 
 
 # Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc all
