@@ -8,7 +8,6 @@ __email__ = "Joey.Zacherl@gmail.com"
 
 from loggingConfig import InitLogging, PrintAndLogError, PrintAndLog
 import requests
-import rlp
 import sys, traceback
 import json
 import hmac
