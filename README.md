@@ -441,15 +441,128 @@ openSellOrders =
 	binance.API_Get_TradeHistory_Binance("SNTETH")
 <details><summary>Show Output</summary>
 <pre>
-[{u'orderId': 1828341, u'isBuyer': True, u'price': u'0.00009044', u'isMaker': False, u'qty': u'120.00000000', u'commission': u'0.12000000', u'time': 1508399279948, u'commissionAsset': u'SNT', u'id': 386679, u'isBestMatch': True}, {u'orderId': 1828394, u'isBuyer': False, u'price': u'0.00009049', u'isMaker': True, u'qty': u'120.00000000', u'commission': u'0.00001086', u'time': 1508399893085, u'commissionAsset': u'ETH', u'id': 386709, u'isBestMatch': True}, {u'orderId': 1858113, u'isBuyer': True, u'price': u'0.00008809', u'isMaker': False, u'qty': u'20.00000000', u'commission': u'0.00021319', u'time': 1508442943941, u'commissionAsset': u'BNB', u'id': 389115, u'isBestMatch': True}, {u'orderId': 1858157, u'isBuyer': True, u'price': u'0.00008801', u'isMaker': False, u'qty': u'30.00000000', u'commission': u'0.00031999', u'time': 1508443011531, u'commissionAsset': u'BNB', u'id': 389116, u'isBestMatch': True}, {u'orderId': 1858181, u'isBuyer': False, u'price': u'0.00008693', u'isMaker': False, u'qty': u'50.00000000', u'commission': u'0.00053085', u'time': 1508443048017, u'commissionAsset': u'BNB', u'id': 389120, u'isBestMatch': True}, {u'orderId': 1864829, u'isBuyer': True, u'price': u'0.00008924', u'isMaker': False, u'qty': u'30.00000000', u'commission': u'0.00031375', u'time': 1508454466271, u'commissionAsset': u'BNB', u'id': 389600, u'isBestMatch': True}]
+[
+  {
+    u'orderId': 1828341,
+    u'isBuyer': True,
+    u'price': u'0.00009044',
+    u'isMaker': False,
+    u'qty': u'120.00000000',
+    u'commission': u'0.12000000',
+    u'time': 1508399279948,
+    u'commissionAsset': u'SNT',
+    u'id': 386679,
+    u'isBestMatch': True
+  },
+  {
+    u'orderId': 1828394,
+    u'isBuyer': False,
+    u'price': u'0.00009049',
+    u'isMaker': True,
+    u'qty': u'120.00000000',
+    u'commission': u'0.00001086',
+    u'time': 1508399893085,
+    u'commissionAsset': u'ETH',
+    u'id': 386709,
+    u'isBestMatch': True
+  },
+  ...
+  {
+    u'orderId': 1864829,
+    u'isBuyer': True,
+    u'price': u'0.00008924',
+    u'isMaker': False,
+    u'qty': u'30.00000000',
+    u'commission': u'0.00031375',
+    u'time': 1508454466271,
+    u'commissionAsset': u'BNB',
+    u'id': 389600,
+    u'isBestMatch': True
+  }
+]
 </pre>
 </details>
 
 ####  Get 24 hour ticker price change stats
 	binance.API_Get_24TickerPriceChange_Binance("SNTETH")
+<details><summary>Show Output</summary>
+<pre>
+{
+  u'count': 4415,
+  u'bidQty': u'2266.00000000',
+  u'prevClosePrice': u'0.00008707',
+  u'askQty': u'2248.00000000',
+  u'lastPrice': u'0.00008921',
+  u'lowPrice': u'0.00008492',
+  u'askPrice': u'0.00008919',
+  u'lastQty': u'1100.00000000',
+  u'priceChange': u'0.00000209',
+  u'openPrice': u'0.00008712',
+  u'volume': u'5667098.00000000',
+  u'openTime': 1508434278315,
+  u'bidPrice': u'0.00008826',
+  u'closeTime': 1508520678315,
+  u'firstId': 388691,
+  u'quoteVolume': u'503.19794500',
+  u'weightedAvgPrice': u'0.00008879',
+  u'lastId': 393105,
+  u'priceChangePercent': u'2.399',
+  u'highPrice': u'0.00009099'
+}
+</pre>
+</details>
 
 ####  Get Kline/Candlestick data given interval
 	binance.API_Get_KlineCandlestick_Binance("SNTETH", "30m")
+<details><summary>Show Output</summary>
+<pre>
+[
+  [
+    1507622400000,
+    u'0.00007630',
+    u'0.00007634',
+    u'0.00007536',
+    u'0.00007536',
+    u'132768.00000000',
+    1507624199999,
+    u'10.10279036',
+    105,
+    u'44289.00000000',
+    u'3.36611129',
+    u'84154027.76520122'
+  ],
+  [
+    1507624200000,
+    u'0.00007541',
+    u'0.00007633',
+    u'0.00007511',
+    u'0.00007613',
+    u'110807.00000000',
+    1507625999999,
+    u'8.36855540',
+    71,
+    u'23849.00000000',
+    u'1.81251704',
+    u'84154127.76520122'
+  ],
+  ...
+  [
+    1508520600000,
+    u'0.00008921',
+    u'0.00008921',
+    u'0.00008915',
+    u'0.00008915',
+    u'1811.00000000',
+    1508522399999,
+    u'0.16151665',
+    3,
+    u'1811.00000000',
+    u'0.16151665',
+    u'105328636.04955539'
+  ]
+]
+</pre>
+</details>
 
 ####  Get aggregate trades
 	binance.API_Get_AggregateTrades_Binance("SNTETH")
