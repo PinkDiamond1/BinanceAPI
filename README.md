@@ -10,8 +10,8 @@ I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyrigh
     git clone https://github.com/lampshade9909/BinanceAPI
 
 #### Dependencies
-	pip install websocket-client (https://pypi.python.org/pypi/websocket-client)
 	pip install requests
+	pip install websocket-client (Only needed if you're doing websockets, https://pypi.python.org/pypi/websocket-client)
 
 #### Import the library
 	import binance
