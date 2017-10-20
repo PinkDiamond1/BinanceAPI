@@ -136,7 +136,7 @@ Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's 
 	
 ![alt text](https://i.imgur.com/yxtboiV.png)
 
-Set up a [Stringify account](https://www.stringify.com/) with the mobile apps.  
+Set up a [Stringify account](https://www.stringify.com/) with the iOS or Android mobile apps to configure your automations with Binance.  
 
 ####  Websockets
     websocket.enableTrace(True)
