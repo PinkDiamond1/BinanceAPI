@@ -158,10 +158,21 @@ BNB = {u'symbol': u'BNBBTC', u'price': u'0.00021087'}
 </details>
 	
 ####  Get open orders
-	binance.API_Get_OpenOrders_Binance("SNTETH")
+	openOrders = binance.API_Get_OpenOrders_Binance("BNBETH")
+<details><summary>Show Output</summary>
+<pre>
+[{u'orderId': 3989984, u'clientOrderId': u'XDX5uvT6EYXYSrqGVnFtf7', u'origQty': u'3.00000000', u'icebergQty': u'0.00000000', u'symbol': u'BNBETH', u'side': u'BUY', u'timeInForce': u'GTC', u'status': u'NEW', u'stopPrice': u'0.00000000', u'time': 1508518881879, u'type': u'LIMIT', u'price': u'0.00401189', u'executedQty': u'0.00000000'}, {u'orderId': 3990000, u'clientOrderId': u'iptndGLiwz5PtLYtV39rlU', u'origQty': u'3.00000000', u'icebergQty': u'0.00000000', u'symbol': u'BNBETH', u'side': u'SELL', u'timeInForce': u'GTC', u'status': u'NEW', u'stopPrice': u'0.00000000', u'time': 1508518906583, u'type': u'LIMIT', u'price': u'0.00435000', u'executedQty': u'0.00000000'}]
+openOrders = [{u'orderId': 3989984, u'clientOrderId': u'XDX5uvT6EYXYSrqGVnFtf7', u'origQty': u'3.00000000', u'icebergQty': u'0.00000000', u'symbol': u'BNBETH', u'side': u'BUY', u'timeInForce': u'GTC', u'status': u'NEW', u'stopPrice': u'0.00000000', u'time': 1508518881879, u'type': u'LIMIT', u'price': u'0.00401189', u'executedQty': u'0.00000000'}, {u'orderId': 3990000, u'clientOrderId': u'iptndGLiwz5PtLYtV39rlU', u'origQty': u'3.00000000', u'icebergQty': u'0.00000000', u'symbol': u'BNBETH', u'side': u'SELL', u'timeInForce': u'GTC', u'status': u'NEW', u'stopPrice': u'0.00000000', u'time': 1508518906583, u'type': u'LIMIT', u'price': u'0.00435000', u'executedQty': u'0.00000000'}]
+</pre>
+</details>
 
-####  Get order history
+####  Get trade history
 	binance.API_Get_TradeHistory_Binance("SNTETH")
+<details><summary>Show Output</summary>
+<pre>
+[{u'orderId': 1828341, u'isBuyer': True, u'price': u'0.00009044', u'isMaker': False, u'qty': u'120.00000000', u'commission': u'0.12000000', u'time': 1508399279948, u'commissionAsset': u'SNT', u'id': 386679, u'isBestMatch': True}, {u'orderId': 1828394, u'isBuyer': False, u'price': u'0.00009049', u'isMaker': True, u'qty': u'120.00000000', u'commission': u'0.00001086', u'time': 1508399893085, u'commissionAsset': u'ETH', u'id': 386709, u'isBestMatch': True}, {u'orderId': 1858113, u'isBuyer': True, u'price': u'0.00008809', u'isMaker': False, u'qty': u'20.00000000', u'commission': u'0.00021319', u'time': 1508442943941, u'commissionAsset': u'BNB', u'id': 389115, u'isBestMatch': True}, {u'orderId': 1858157, u'isBuyer': True, u'price': u'0.00008801', u'isMaker': False, u'qty': u'30.00000000', u'commission': u'0.00031999', u'time': 1508443011531, u'commissionAsset': u'BNB', u'id': 389116, u'isBestMatch': True}, {u'orderId': 1858181, u'isBuyer': False, u'price': u'0.00008693', u'isMaker': False, u'qty': u'50.00000000', u'commission': u'0.00053085', u'time': 1508443048017, u'commissionAsset': u'BNB', u'id': 389120, u'isBestMatch': True}, {u'orderId': 1864829, u'isBuyer': True, u'price': u'0.00008924', u'isMaker': False, u'qty': u'30.00000000', u'commission': u'0.00031375', u'time': 1508454466271, u'commissionAsset': u'BNB', u'id': 389600, u'isBestMatch': True}]
+</pre>
+</details>
 
 ####  Get 24 hour ticker price change stats
 	binance.API_Get_24TickerPriceChange_Binance("SNTETH")
