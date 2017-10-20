@@ -2,7 +2,7 @@
 
 I've created an easy to use python integration with [Binance's API](https://www.binance.com/). It enables developers to skip over the lower level API programming and jump right into the fun stuff like getting prices and trading cryptocurrencies. I'm also demonstrating how to begin automating this process and make a "connected" trading bot. You can do things like: Populate a Google Drive spreadsheet with your trade results, and send your phone a push notification showing your profit when your trade order is filled. 
 
-This library is very easy to use, has a built in logging mechanism, does the heavy lifting with all of your Binance's APIs, and introduces developers to powerful automation features that can be tied into your program.
+This library is very easy to use, has a built in logging mechanism, does the heavy lifting with all of your Binance's APIs, and introduces developers to powerful automation features that can be tied into your program. 
 
 I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
 
@@ -179,7 +179,10 @@ Next, import this flow: ["When my bot makes a trade, send my phone a notificatio
 
 ![alt text](https://i.imgur.com/m8TSfvO.png)  ![alt text](https://i.imgur.com/vWiofnw.png)
 
-Your Binance trading bot will be the trigger on the left. It will trigger this automation and pass a message to your phone notification or Google Drive thing on the right. The Maker thing on the left generates a URL to which the API_Post_Stringify method can make a REST request.
+Your Binance trading bot will be the trigger on the left. It will trigger this automation and pass a message to your phone notification and Google Drive thing on the right. The Maker thing on the left generates a URL to which the API_Post_Stringify method can make a REST request. You'll need to copy/paste that URL (which is unique to you) into your python code. 
 
 ![alt text](https://i.imgur.com/MssRmyy.png)  ![alt text](https://i.imgur.com/J5lRaCc.png)
+
 The notification and Google Drive things get configured such that the data from the Binance bot gets sent to them. 
+
+This will get your feet wet with automating your trading experience. Binance has fast and detailed APIs that give you all the information you need to trade and automate your cryptocurrency exchange experience. 
