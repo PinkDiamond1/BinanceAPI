@@ -375,6 +375,26 @@ def API_Delete_Order_Binance(symbol, orderId, recvWindow=5000):
         response.raise_for_status()
 
 
+def API_Get_OpenBuyOrders_Binance(symbol, recvWindow=5000):
+    ordersJData = API_Get_OpenOrders_Binance(symbol, recvWindow)
+
+    returnList = []
+    for order in ordersJData:
+        if order['side'].lower() == "buy":
+            returnList.append(order)
+
+    return returnList
+
+def API_Get_OpenSellOrders_Binance(symbol, recvWindow=5000):
+    ordersJData = API_Get_OpenOrders_Binance(symbol, recvWindow)
+
+    returnList = []
+    for order in ordersJData:
+        if order['side'].lower() == "sell":
+            returnList.append(order)
+
+    return returnList
+
 def API_Get_OpenOrders_Binance(symbol, recvWindow=5000):
     timeStamp = GetTimeStamp_Binance()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp

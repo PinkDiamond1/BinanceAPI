@@ -46,13 +46,14 @@ binance.API_Get_Time_Binance()
 # Get the top n bid/ask orders for a symbol
 topNBids = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "bids")
 topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "asks")
+# Or get the top n bid/ask in one call
 topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "both")
 PrintAndLog("topNBids = " + str(topNBids))
 PrintAndLog("topNAsks = " + str(topNAsks))
 
 # Get account info, free/locked balances, etc
-# info = binance.API_Get_AccountInfo_Binance()
-# PrintAndLog("info = " + str(info))
+# allInfo = binance.API_Get_AccountInfo_Binance()
+# PrintAndLog("allInfo = " + str(allInfo))
 
 # Get free/locked balances for an asset
 # balance_bnb = binance.API_Get_Balance_Binance("bnb")
@@ -60,10 +61,11 @@ PrintAndLog("topNAsks = " + str(topNAsks))
 # PrintAndLog("balance_bnb = " + str(balance_bnb))
 # PrintAndLog("balance_eth = " + str(balance_eth))
 
-# Get all prices
-# binance.API_Get_Markets_Binance()
-
-# Get price
+# # Get all prices
+# markets = binance.API_Get_Markets_Binance()
+# PrintAndLog("markets = " + str(markets))
+#
+# # Get price
 # BNB = binance.API_Get_Price_Binance("BNB")
 # PrintAndLog("BNB = " + str(BNB))
 
@@ -87,10 +89,17 @@ PrintAndLog("topNAsks = " + str(topNAsks))
 # # Delete an open order
 # binance.API_Delete_Order_Binance("SNTETH", "1866448")
 
-# Get open orders
-# binance.API_Get_OpenOrders_Binance("SNTETH")
+# # Get open orders
+# openOrders = binance.API_Get_OpenOrders_Binance("BNBETH")
+# PrintAndLog("openOrders = " + str(openOrders))
+# # Get only open buy orders
+# openBuyOrders = binance.API_Get_OpenBuyOrders_Binance("BNBETH")
+# PrintAndLog("openBuyOrders = " + str(openBuyOrders))
+# # Get only open sell orders
+# openSellOrders = binance.API_Get_OpenSellOrders_Binance("BNBETH")
+# PrintAndLog("openSellOrders = " + str(openSellOrders))
 
-# Get order history
+# Get trade history
 # binance.API_Get_TradeHistory_Binance("SNTETH")
 
 # Get 24 hour ticker price change stats
