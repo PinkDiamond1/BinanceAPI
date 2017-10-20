@@ -177,9 +177,9 @@ Set up a [Stringify account](https://www.stringify.com/) with your iOS or Androi
 
 Next, import this flow: ["When my bot makes a trade, send my phone a notification and log it to a Google Drive spreadsheet."](https://app.stringify.com/flow/ebtuMIcbGogPxvr7Etlh)
 
-![alt text](https://i.imgur.com/m8TSfvO.png)![alt text](https://i.imgur.com/vWiofnw.png)
+![alt text](https://i.imgur.com/m8TSfvO.png)  ![alt text](https://i.imgur.com/vWiofnw.png)
 
 Your Binance trading bot will be the trigger on the left. It will trigger this automation and pass a message to your phone notification or Google Drive thing on the right. The Maker thing on the left generates a URL to which the API_Post_Stringify method can make a REST request.
 
-![alt text](https://i.imgur.com/MssRmyy.png)![alt text](https://i.imgur.com/J5lRaCc.png)
+![alt text](https://i.imgur.com/MssRmyy.png)  ![alt text](https://i.imgur.com/J5lRaCc.png)
 The notification and Google Drive things get configured such that the data from the Binance bot gets sent to them. 
