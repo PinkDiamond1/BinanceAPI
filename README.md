@@ -566,7 +566,7 @@ openSellOrders =
 
 ####  Get aggregate trades
 	binance.API_Get_AggregateTrades("SNTETH")
-	<details><summary>Show Output</summary>
+<details><summary>Show Output</summary>
 <pre>
 [
   {
