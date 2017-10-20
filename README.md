@@ -126,11 +126,9 @@ I've created an easy to use python integration with Binance's API. It enables de
 ####  Automate your Binance trading experience with Stringify	
 ![alt text](https://i.imgur.com/RydTB09.png)
 
-####  Here's how you do it
-	# Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
-	# Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's notifications.  So everytime my program makes a trade, it sends me a notification and logs it to Google Drive.  
-	# Binance's API + automation = fun.
-	
+Binance's API + automation = fun.  Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc. You can even connect other physical/digital services like Google Drive, phone notifications, Twitter, Facebook, etc. 
+Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's notifications.  So everytime my program makes a trade, it sends me a notification and logs it to Google Drive.  
+
 	stringifyMakerURLgoesHere = "https://webhooks.stringify.com/v1/events/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG/1/8a6e11d394fb9ac1af60b789d6e95537/TMSooXKVpJNRZ5choay3"
 	API_Post_Stringify("Bought 100 BNB on Binance!", stringifyMakerURLgoesHere)
 	
