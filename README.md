@@ -357,9 +357,15 @@ markets =
 </details>
 	
 ####  Get open orders
+	# All open orders
 	openOrders = binance.API_Get_OpenOrders_Binance("BNBETH")
+	# Only open buy orders
+	openBuyOrders = binance.API_Get_OpenBuyOrders_Binance("BNBETH")
+	# Only open sell orders
+	openSellOrders = binance.API_Get_OpenSellOrders_Binance("BNBETH")
 <details><summary>Show Output</summary>
 <pre>
+openOrders = 
 [
   {
     u'orderId': 3989984,
@@ -376,6 +382,42 @@ markets =
     u'price': u'0.00401189',
     u'executedQty': u'0.00000000'
   },
+  {
+    u'orderId': 3990000,
+    u'clientOrderId': u'iptndGLiwz5PtLYtV39rlU',
+    u'origQty': u'3.00000000',
+    u'icebergQty': u'0.00000000',
+    u'symbol': u'BNBETH',
+    u'side': u'SELL',
+    u'timeInForce': u'GTC',
+    u'status': u'NEW',
+    u'stopPrice': u'0.00000000',
+    u'time': 1508518906583,
+    u'type': u'LIMIT',
+    u'price': u'0.00435000',
+    u'executedQty': u'0.00000000'
+  }
+]
+openBuyOrders = 
+[
+  {
+    u'orderId': 3989984,
+    u'clientOrderId': u'XDX5uvT6EYXYSrqGVnFtf7',
+    u'origQty': u'3.00000000',
+    u'icebergQty': u'0.00000000',
+    u'symbol': u'BNBETH',
+    u'side': u'BUY',
+    u'timeInForce': u'GTC',
+    u'status': u'NEW',
+    u'stopPrice': u'0.00000000',
+    u'time': 1508518881879,
+    u'type': u'LIMIT',
+    u'price': u'0.00401189',
+    u'executedQty': u'0.00000000'
+  }
+]
+openSellOrders = 
+[
   {
     u'orderId': 3990000,
     u'clientOrderId': u'iptndGLiwz5PtLYtV39rlU',
