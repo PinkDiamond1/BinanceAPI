@@ -10,6 +10,7 @@ This library is very easy to use, has a built in logging mechanism, does the hea
 #### Dependencies
 	pip install websocket-client (https://pypi.python.org/pypi/websocket-client)
 	pip install requests
+	brew install coreutils (using gdate to get time in milliseconds)
 
 #### To run examples
 	# Choose which function to call via uncommenting/commenting the source within examples.py, then run:
