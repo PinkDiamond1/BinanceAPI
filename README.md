@@ -147,7 +147,6 @@ topNBids =
     []
   ]
 ]
-
 topNAsks = 
 [
   [
