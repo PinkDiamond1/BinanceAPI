@@ -44,11 +44,11 @@ binance.API_Get_Time_Binance()
 # PrintAndLog("orders = " + str(orders))
 
 # Get the top n bid/ask orders for a symbol
-# topNBids = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "bids")
-# topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "asks")
-# topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "both")
-# PrintAndLog("topNBids = " + str(topNBids))
-# PrintAndLog("topNAsks = " + str(topNAsks))
+topNBids = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "bids")
+topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "asks")
+topNBids, topNAsks = binance.API_Get_TopNOrders_Binance("BNBETH", 10, "both")
+PrintAndLog("topNBids = " + str(topNBids))
+PrintAndLog("topNAsks = " + str(topNAsks))
 
 # Get account info, free/locked balances, etc
 # info = binance.API_Get_AccountInfo_Binance()
