@@ -2,7 +2,7 @@
 
 I've created an easy to use python integration with [Binance's API](https://www.binance.com/). It enables developers to skip over the lower level API programming and jump right into the fun stuff like getting prices and trading cryptocurrencies. I'm also demonstrating how to begin automating this process and make a "connected" trading bot. You can do things like: Populate a Google Drive spreadsheet with your trade results, and send your phone a push notification showing your profit when your trade order is filled. 
 
-This library uses all aspects of Binance's APIs, comes with a built in logging mechanism, and does the heavy lifting for you. 
+This library is very easy to use, has a built in logging mechanism, does the heavy lifting with all of your API components, and introduces the developer to powerful automation features.  
 
 #### Installation
     git clone https://github.com/lampshade9909/BinanceAPI
@@ -169,5 +169,6 @@ Set up a [Stringify account](https://www.stringify.com/) with the iOS or Android
 
 From here, you can update your UI or your program's behavior with this real-time data from websockets.
 
+Note: the library generates a log file called "logfile".
 
 I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
