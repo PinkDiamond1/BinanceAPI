@@ -184,4 +184,4 @@ Your Binance trading bot will be the trigger on the left. It will trigger this a
 
 The notification and Google Drive things get configured such that the data from the Binance bot gets sent to them. 
 
-This will get your feet wet with automating your trading experience. Binance has fast and detailed APIs that give you all the information you need to trade and automate your cryptocurrency exchange experience. 
+This will get your feet wet with automating your trading experience. With Binance's fast and detailed APIs combined with this python library, you have all the tools you need to trade and automate your cryptocurrency exchange experience.
