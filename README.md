@@ -132,5 +132,7 @@ Here, i've connected my Google Drive spreadsheet and my iPhone/Android device's 
 	stringifyMakerURLgoesHere = "https://webhooks.stringify.com/v1/events/fEKBTcS1iCb3F99yGsNpV9svvetMzGwG/1/8a6e11d394fb9ac1af60b789d6e95537/TMSooXKVpJNRZ5choay3"
 	API_Post_Stringify("Bought 100 BNB on Binance!", stringifyMakerURLgoesHere)
 	
+![alt text](https://i.imgur.com/yxtboiV.png)
+
 
 I, Joey Zacherl, fully own the code I submit.  I guarantee there are no copyright or license restrictions.  I further agree any code I submit will be in public domain.  Anyone can copy, change, derive further work from it without any restrictions.
