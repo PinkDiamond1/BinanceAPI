@@ -162,7 +162,7 @@ Note: this library generates a log file called "logfile" which helps you debug a
 
 ####  Binance's API + Automation = Next Level Trading
 
-![alt text](https://i.imgur.com/op04NW2.png)  ![alt text](https://i.imgur.com/RydTB09.png)
+![alt text](https://i.imgur.com/op04NW2.png)  ![alt text](https://i.imgur.com/yxtboiV.png)
 
 "When my bot makes a trade, send my phone a notification and log it to a Google Drive spreadsheet."
 
