@@ -77,34 +77,35 @@ balance_eth = {u'locked': u'0.00000000', u'asset': u'ETH', u'free': u'0.03479956
 	
 ####  Get prices
 	# All at once
-	allPrices = binance.API_Get_Markets_Binance()
+	markets = binance.API_Get_Markets_Binance()
 	# One at a time
 	BNB = binance.API_Get_Price_Binance("BNB")
 <details><summary>Show Output</summary>
 <pre>
 markets = [{u'symbol': u'ETHBTC', u'price': u'0.05126100'}, {u'symbol': u'LTCBTC', u'price': u'0.01018100'}, {u'symbol': u'BNBBTC', u'price': u'0.00021087'}, {u'symbol': u'NEOBTC', u'price': u'0.00476200'}, {u'symbol': u'123456', u'price': u'0.00030000'}, {u'symbol': u'QTUMETH', u'price': u'0.03799200'}, {u'symbol': u'EOSETH', u'price': u'0.00178600'}, {u'symbol': u'SNTETH', u'price': u'0.00008958'}, {u'symbol': u'BNTETH', u'price': u'0.00699300'}, {u'symbol': u'BCCBTC', u'price': u'0.05519800'}, {u'symbol': u'GASBTC', u'price': u'0.00332300'}, {u'symbol': u'BNBETH', u'price': u'0.00410667'}, {u'symbol': u'BTMETH', u'price': u'0.00018900'}, {u'symbol': u'HCCBTC', u'price': u'0.00000180'}, {u'symbol': u'BTCUSDT', u'price': u'5940.07000000'}, {u'symbol': u'ETHUSDT', u'price': u'304.02000000'}, {u'symbol': u'HSRBTC', u'price': u'0.00289000'}, {u'symbol': u'OAXETH', u'price': u'0.00130000'}, {u'symbol': u'DNTETH', u'price': u'0.00019104'}, {u'symbol': u'MCOETH', u'price': u'0.02399000'}, {u'symbol': u'ICNETH', u'price': u'0.00400000'}, {u'symbol': u'ELCBTC', u'price': u'0.00000053'}, {u'symbol': u'MCOBTC', u'price': u'0.00125800'}, {u'symbol': u'WTCBTC', u'price': u'0.00107000'}, {u'symbol': u'WTCETH', u'price': u'0.02087700'}, {u'symbol': u'LLTBTC', u'price': u'0.00001669'}, {u'symbol': u'LRCBTC', u'price': u'0.00001100'}, {u'symbol': u'LRCETH', u'price': u'0.00016311'}, {u'symbol': u'QTUMBTC', u'price': u'0.00192900'}, {u'symbol': u'YOYOBTC', u'price': u'0.00000481'}, {u'symbol': u'OMGBTC', u'price': u'0.00126800'}, {u'symbol': u'OMGETH', u'price': u'0.02503300'}, {u'symbol': u'ZRXBTC', u'price': u'0.00003547'}, {u'symbol': u'ZRXETH', u'price': u'0.00069300'}, {u'symbol': u'STRATBTC', u'price': u'0.00051500'}, {u'symbol': u'STRATETH', u'price': u'0.01021600'}, {u'symbol': u'SNGLSBTC', u'price': u'0.00002492'}, {u'symbol': u'SNGLSETH', u'price': u'0.00048705'}, {u'symbol': u'BQXBTC', u'price': u'0.00011803'}, {u'symbol': u'BQXETH', u'price': u'0.00230000'}, {u'symbol': u'KNCBTC', u'price': u'0.00017402'}, {u'symbol': u'KNCETH', u'price': u'0.00342600'}, {u'symbol': u'FUNBTC', u'price': u'0.00000340'}, {u'symbol': u'FUNETH', u'price': u'0.00006635'}, {u'symbol': u'SNMBTC', u'price': u'0.00001664'}, {u'symbol': u'SNMETH', u'price': u'0.00033072'}, {u'symbol': u'NEOETH', u'price': u'0.09309800'}, {u'symbol': u'IOTABTC', u'price': u'0.00006758'}, {u'symbol': u'IOTAETH', u'price': u'0.00132877'}, {u'symbol': u'LINKBTC', u'price': u'0.00004101'}, {u'symbol': u'LINKETH', u'price': u'0.00081757'}, {u'symbol': u'XVGBTC', u'price': u'0.00000074'}, {u'symbol': u'XVGETH', u'price': u'0.00001495'}, {u'symbol': u'CTRBTC', u'price': u'0.00009299'}, {u'symbol': u'CTRETH', u'price': u'0.00182230'}, {u'symbol': u'SALTBTC', u'price': u'0.00046700'}, {u'symbol': u'SALTETH', u'price': u'0.00910300'}, {u'symbol': u'MDABTC', u'price': u'0.00022621'}, {u'symbol': u'MDAETH', u'price': u'0.00448890'}, {u'symbol': u'MTLBTC', u'price': u'0.00119100'}, {u'symbol': u'MTLETH', u'price': u'0.02506700'}, {u'symbol': u'SUBBTC', u'price': u'0.00002220'}, {u'symbol': u'SUBETH', u'price': u'0.00043500'}, {u'symbol': u'EOSBTC', u'price': u'0.00009128'}, {u'symbol': u'SNTBTC', u'price': u'0.00000454'}, {u'symbol': u'ETC', u'price': u'0.00000000'}, {u'symbol': u'ETCETH', u'price': u'0.03742700'}, {u'symbol': u'ETCBTC', u'price': u'0.00188900'}, {u'symbol': u'MTHBTC', u'price': u'0.00001255'}, {u'symbol': u'MTHETH', u'price': u'0.00023999'}, {u'symbol': u'ENGBTC', u'price': u'0.00007112'}, {u'symbol': u'ENGETH', u'price': u'0.00140000'}, {u'symbol': u'DNTBTC', u'price': u'0.00000991'}, {u'symbol': u'ZECBTC', u'price': u'0.00000000'}, {u'symbol': u'ZECETH', u'price': u'0.00000000'}, {u'symbol': u'BNTBTC', u'price': u'0.00034198'}, {u'symbol': u'ASTBTC', u'price': u'0.00004615'}, {u'symbol': u'ASTETH', u'price': u'0.00090010'}, {u'symbol': u'DASHBTC', u'price': u'0.04872800'}, {u'symbol': u'DASHETH', u'price': u'0.99112000'}]
-url = https://www.binance.com/api/v1/ticker/allPrices
 BNB = {u'symbol': u'BNBBTC', u'price': u'0.00021087'}
 </pre>
 </details>
 	
-	
 ####  Buy limit order
 	binance.API_Post_BuyLimitOrder_Binance("SNTETH", 131, "0.00008111")
-	
-	#{
-	#  u'orderId': 1866448,
-	#  u'clientOrderId': u'e6NxhMuCxnqUtVJ2AfKkuV',
-	#  u'origQty': u'131.00000000',
-	#  u'symbol': u'SNTETH',
-	#  u'side': u'BUY',
-	#  u'timeInForce': u'GTC',
-	#  u'status': u'NEW',
-	#  u'transactTime': 1508458538408,
-	#  u'type': u'LIMIT',
-	#  u'price': u'0.00008111',
-	#  u'executedQty': u'0.00000000'
-	#}
+<details><summary>Show Output</summary>
+<pre>
+{
+  u'orderId': 1866448,
+  u'clientOrderId': u'e6NxhMuCxnqUtVJ2AfKkuV',
+  u'origQty': u'131.00000000',
+  u'symbol': u'SNTETH',
+  u'side': u'BUY',
+  u'timeInForce': u'GTC',
+  u'status': u'NEW',
+  u'transactTime': 1508458538408,
+  u'type': u'LIMIT',
+  u'price': u'0.00008111',
+  u'executedQty': u'0.00000000'
+}
+</pre>
+</details>
 	
 ####  Sell limit order
 	binance.API_Post_SellLimitOrder_Binance("SNTETH", 120, "0.00009049")
@@ -123,32 +124,38 @@ BNB = {u'symbol': u'BNBBTC', u'price': u'0.00021087'}
 
 ####  Get the status of an order
 	binance.API_Get_OrderStatus_Binance("SNTETH", "1866448")
-	
-	#{
-	#  u'orderId': 1866448,
-	#  u'clientOrderId': u'e6NxhMuCxnqUtVJ2AfKkuV',
-	#  u'origQty': u'131.00000000',
-	#  u'icebergQty': u'0.00000000',
-	#  u'symbol': u'SNTETH',
-	#  u'side': u'BUY',
-	#  u'timeInForce': u'GTC',
-	#  u'status': u'NEW',
-	#  u'stopPrice': u'0.00000000',
-	#  u'time': 1508458538408,
-	#  u'type': u'LIMIT',
-	#  u'price': u'0.00008111',
-	#  u'executedQty': u'0.00000000'
-	#}
+<details><summary>Show Output</summary>
+<pre>
+{
+  u'orderId': 1866448,
+  u'clientOrderId': u'e6NxhMuCxnqUtVJ2AfKkuV',
+  u'origQty': u'131.00000000',
+  u'icebergQty': u'0.00000000',
+  u'symbol': u'SNTETH',
+  u'side': u'BUY',
+  u'timeInForce': u'GTC',
+  u'status': u'NEW',
+  u'stopPrice': u'0.00000000',
+  u'time': 1508458538408,
+  u'type': u'LIMIT',
+  u'price': u'0.00008111',
+  u'executedQty': u'0.00000000'
+}
+</pre>
+</details>
 
 ####  Delete an open order
 	binance.API_Delete_Order_Binance("SNTETH", "1866448")
-	
-	#{
-	#  u'orderId': 1866448,
-	#  u'clientOrderId': u'IpNsmi8RPaYcXXDXjxoscN',
-	#  u'symbol': u'SNTETH',
-	#  u'origClientOrderId': u'e6NxhMuCxnqUtVJ2AfKkuV'
-	#}
+<details><summary>Show Output</summary>
+<pre>
+{
+  u'orderId': 1866448,
+  u'clientOrderId': u'IpNsmi8RPaYcXXDXjxoscN',
+  u'symbol': u'SNTETH',
+  u'origClientOrderId': u'e6NxhMuCxnqUtVJ2AfKkuV'
+}
+</pre>
+</details>
 	
 ####  Get open orders
 	binance.API_Get_OpenOrders_Binance("SNTETH")
