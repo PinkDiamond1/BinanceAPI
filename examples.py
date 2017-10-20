@@ -27,8 +27,8 @@ def API_Post_Stringify(message, stringifyMakerUrl):
 
 
 # Put your API Key and Secret here!
-# binance.SetAPIKey("APIKeyGoesHere")
-# binance.SetAPISecret("APISecretGoesHere")
+binance.SetAPIKey("APIKeyGoesHere")
+binance.SetAPISecret("APISecretGoesHere")
 
 
 # Ping the API
@@ -99,17 +99,17 @@ PrintAndLog("topNAsks = " + str(topNAsks))
 # openSellOrders = binance.API_Get_OpenSellOrders("BNBETH")
 # PrintAndLog("openSellOrders = " + str(openSellOrders))
 
-# Get trade history
-binance.API_Get_TradeHistory("SNTETH")
-
-# Get 24 hour ticker price change stats
-binance.API_Get_24TickerPriceChange("SNTETH")
-
-# Get Kline/Candlestick data given interval: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
-binance.API_Get_KlineCandlestick("SNTETH", "30m")
-
-# Get aggregate trades
-binance.API_Get_AggregateTrades("SNTETH")
+# # Get trade history
+# binance.API_Get_TradeHistory("SNTETH")
+#
+# # Get 24 hour ticker price change stats
+# binance.API_Get_24TickerPriceChange("SNTETH")
+#
+# # Get Kline/Candlestick data given interval: 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
+# binance.API_Get_KlineCandlestick("SNTETH", "30m")
+#
+# # Get aggregate trades
+# binance.API_Get_AggregateTrades("SNTETH")
 
 
 # Use the API_Post_Stringify call to automate logging to help you track profits, transactions, balances, etc all
