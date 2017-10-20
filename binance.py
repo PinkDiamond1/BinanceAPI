@@ -8,21 +8,14 @@ __email__ = "Joey.Zacherl@gmail.com"
 
 from loggingConfig import InitLogging, PrintAndLogError, PrintAndLog
 import requests
-from ethereum import transactions
 import rlp
-from random import randint
-import datetime
 import sys, traceback
 import json
 import hmac
 import hashlib
-import math
-# from decimal import *
 import subprocess
 
 
-# APIKey_Binance = "JvtkFvJ0by8fwkZlvugJdurdPOF2EdpEntmYV16CbIWnfmeWvhblnHXxkwt5FQu0"
-# APISecret_Binance = "bLCOYdHGpqmNV0ZdGjFEB9JYCNqxD7W19bELCwlzWjJG67BFWvTF5z3v902Gy5um"
 APIKey_Binance = None
 APISecret_Binance = None
 
