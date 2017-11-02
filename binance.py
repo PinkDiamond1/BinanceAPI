@@ -14,10 +14,8 @@ import hmac
 import hashlib
 import time
 
-
 APIKey_Binance = None
 APISecret_Binance = None
-
 
 URL_Binance_Base = "https://www.binance.com/api/"
 RequestTimeout_seconds = 15
@@ -46,16 +44,16 @@ def IsAPIKeySecretSet():
 
 def GetBinanceSignature(totalParams):
     global APISecret_Binance
-    print "APISecret_Binance = ", APISecret_Binance
+    # print "APISecret_Binance = ", APISecret_Binance
     signature = hmac.new(APISecret_Binance, totalParams, hashlib.sha256).hexdigest()
     return signature
 
 
 def GetBinanceHeader():
     global APIKey_Binance
-    print "APIKey_Binance = ", APIKey_Binance
+    # print "APIKey_Binance = ", APIKey_Binance
     headers_Binance = {'content-type': 'application/json', 'X-MBX-APIKEY': APIKey_Binance}
-    PrintAndLog("headers_Binance = " + str(headers_Binance))
+    # PrintAndLog("headers_Binance = " + str(headers_Binance))
     return headers_Binance
 
 
@@ -64,7 +62,7 @@ def API_Get_Ping():
     PrintAndLog("url = " + url)
 
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -76,16 +74,21 @@ def API_Get_Ping():
         response.raise_for_status()
 
 
+def ValidateAPIKey():
+    if not IsAPIKeySecretSet():
+        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
+
 def API_Get_Time():
     url = URL_Binance_Base + "v1/time"
-    PrintAndLog("url = " + url)
+    # PrintAndLog("url = " + url)
 
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
-        PrintAndLog("API_Get_Time_Binance jData = " + str(jData))
+        # PrintAndLog("API_Get_Time_Binance jData = " + str(jData))
         return jData
 
     else:
@@ -123,7 +126,7 @@ def API_Get_Orders(symbol):
 
     # response = requests.get(url, headers=headers_local, timeout=RequestTimeout_seconds)
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -153,7 +156,7 @@ def API_Get_Markets():
 
     # response = requests.get(url, headers=headers_local, timeout=RequestTimeout_seconds)
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -166,20 +169,19 @@ def API_Get_Markets():
 
 
 def API_Get_TradeHistory(symbol, recvWindow=5000):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
-    PrintAndLog("totalParams = " + totalParams)
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/myTrades?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.get(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -197,7 +199,7 @@ def API_Get_24TickerPriceChange(symbol):
     PrintAndLog("url = " + url)
 
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -215,7 +217,7 @@ def API_Get_KlineCandlestick(symbol, interval):
     PrintAndLog("url = " + url)
 
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -234,7 +236,7 @@ def API_Get_AggregateTrades(symbol, recvWindow=5000):
     PrintAndLog("url = " + url)
 
     response = requests.get(url, timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -248,19 +250,26 @@ def API_Get_AggregateTrades(symbol, recvWindow=5000):
 
 
 def GetTimeStamp():
-    timeStamp = str(long(round(time.time() * 1000)))
-    return timeStamp
+    try:
+        # Try getting the server time from the API
+        return str(API_Get_Time()['serverTime'])
+
+    except:
+        # Get the time locally (note sometimes the binance API doesn't like this time because they re-route you somewhere that doesn't match this time...)
+        timeStamp = str(long(round(time.time() * 1000)))
+        return timeStamp
 
 
 def API_Post_BuyLimitOrder(symbol, quantity, price, icebergQty=None, stopPrice=None, recvWindow=5000):
     return API_Post_LimitOrder(symbol, "buy", quantity, price, icebergQty, stopPrice, recvWindow)
 
+
 def API_Post_SellLimitOrder(symbol, quantity, price, icebergQty=None, stopPrice=None, recvWindow=5000):
     return API_Post_LimitOrder(symbol, "sell", quantity, price, icebergQty, stopPrice, recvWindow)
 
+
 def API_Post_LimitOrder(symbol, side, quantity, priceString, icebergQty, stopPrice, recvWindow):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
 
@@ -278,15 +287,15 @@ def API_Post_LimitOrder(symbol, side, quantity, priceString, icebergQty, stopPri
     if stopPrice:
         totalParams += "&stopPrice=" + str(stopPrice)
 
-    PrintAndLog("totalParams = " + totalParams)
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/order?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.post(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -302,12 +311,13 @@ def API_Post_LimitOrder(symbol, side, quantity, priceString, icebergQty, stopPri
 def API_Post_BuyMarketOrder(symbol, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
     return API_Post_MarketOrder(symbol, "buy", quantity, icebergQty, stopPrice, recvWindow)
 
+
 def API_Post_SellMarketOrder(symbol, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
     return API_Post_MarketOrder(symbol, "sell", quantity, icebergQty, stopPrice, recvWindow)
 
-def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWindow):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+
+def API_Post_MarketOrder(symbol, side, quantity, icebergQty=None, stopPrice=None, recvWindow=5000):
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
 
@@ -317,6 +327,9 @@ def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWind
     else:
         raise ValueError('side must be either buy or sell')
 
+    # quantity must be rounded to two decimal places
+    quantity = str(round(float(quantity), 0))
+
     totalParams = "symbol=" + symbol.upper() + "&side=" + side + "&type=MARKET&quantity=" + str(quantity) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
 
     if icebergQty:
@@ -325,15 +338,15 @@ def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWind
     if stopPrice:
         totalParams += "&stopPrice=" + str(stopPrice)
 
-    PrintAndLog("totalParams = " + totalParams)
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/order?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.post(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -347,20 +360,19 @@ def API_Post_MarketOrder(symbol, side, quantity, icebergQty, stopPrice, recvWind
 
 
 def API_Get_OrderStatus(symbol, orderId, recvWindow=5000):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&orderId=" + str(orderId) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
-    PrintAndLog("totalParams = " + totalParams)
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/order?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.get(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -374,20 +386,19 @@ def API_Get_OrderStatus(symbol, orderId, recvWindow=5000):
 
 
 def API_Delete_Order(symbol, orderId, recvWindow=5000):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&orderId=" + str(orderId) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
-    PrintAndLog("totalParams = " + totalParams)
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/order?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.delete(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -410,6 +421,7 @@ def API_Get_OpenBuyOrders(symbol, recvWindow=5000):
 
     return returnList
 
+
 def API_Get_OpenSellOrders(symbol, recvWindow=5000):
     ordersJData = API_Get_OpenOrders(symbol, recvWindow)
 
@@ -420,21 +432,21 @@ def API_Get_OpenSellOrders(symbol, recvWindow=5000):
 
     return returnList
 
+
 def API_Get_OpenOrders(symbol, recvWindow=5000):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
     totalParams = "symbol=" + symbol.upper() + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
-    PrintAndLog("totalParams = " + totalParams)
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/openOrders?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.get(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -456,20 +468,20 @@ def API_Get_Balance(currency):
 
 
 def API_Get_AccountInfo(recvWindow=5000):
-    if not IsAPIKeySecretSet():
-        raise Exception('API Key or Secret is not set. Set that before making this call.')
+    ValidateAPIKey()
 
     timeStamp = GetTimeStamp()
-    totalParams = "recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
-    PrintAndLog("totalParams = " + totalParams)
+    # totalParams = "recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
+    totalParams = "timestamp=" + timeStamp
+    # PrintAndLog("totalParams = " + totalParams)
     signature = GetBinanceSignature(totalParams)
-    PrintAndLog("signature = " + signature)
+    # PrintAndLog("signature = " + signature)
 
     url = URL_Binance_Base + "v3/account?" + totalParams + "&signature=" + signature
     PrintAndLog("url = " + url)
 
     response = requests.get(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-    if (response.ok):
+    if response.ok:
         responseData = response.content
         jData = json.loads(responseData)
 
@@ -482,30 +494,53 @@ def API_Get_AccountInfo(recvWindow=5000):
         response.raise_for_status()
 
 
-# Waiting for this API to be finished.  Do not use yet
-# def API_Post_Withdraw(asset, address, amount, recvWindow=5000):
-#     if not IsAPIKeySecretSet():
-#         raise Exception('API Key or Secret is not set. Set that before making this call.')
-#
-#     timeStamp = GetTimeStamp()
-#     totalParams = "asset=" + asset.upper() + "&address=" + address + "&amount=" + str(amount) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
-#
-#     PrintAndLog("totalParams = " + totalParams)
-#     signature = GetBinanceSignature(totalParams)
-#     PrintAndLog("signature = " + signature)
-#
-#     url = "https://www.binance.com/wapi/v1/withdraw.html?" + totalParams + "&signature=" + signature
-#     PrintAndLog("url = " + url)
-#
-#     response = requests.post(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
-#     if (response.ok):
-#         responseData = response.content
-#         jData = json.loads(responseData)
-#
-#         PrintAndLog("API_Post_Withdraw jData = " + str(jData))
-#         return jData
-#
-#     else:
-#         # If response code is not ok (200), print the resulting http error code with description
-#         PrintAndLog("response = " + str(response.content))
-#         response.raise_for_status()
+def API_Post_Withdraw(asset, address, amount, recvWindow=5000):
+    ValidateAPIKey()
+
+    timeStamp = GetTimeStamp()
+    totalParams = "asset=" + asset.upper() + "&address=" + address + "&amount=" + str(amount) + "&recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
+    # PrintAndLog("totalParams = " + totalParams)
+    signature = GetBinanceSignature(totalParams)
+    # PrintAndLog("signature = " + signature)
+
+    url = "https://www.binance.com/wapi/v1/withdraw.html?" + totalParams + "&signature=" + signature  # returns me weird stuff
+    PrintAndLog("url = " + url)
+
+    response = requests.post(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
+    if response.ok:
+        responseData = response.content
+        jData = json.loads(responseData)
+
+        PrintAndLog("API_Post_Withdraw jData = " + str(jData))
+        return jData
+
+    else:
+        # If response code is not ok (200), print the resulting http error code with description
+        PrintAndLog("response = " + str(response.content))
+        response.raise_for_status()
+
+
+def API_Post_GetWithdrawHistory(recvWindow=5000):
+    ValidateAPIKey()
+
+    timeStamp = GetTimeStamp()
+    totalParams = "recvWindow=" + str(recvWindow) + "&timestamp=" + timeStamp
+    # PrintAndLog("totalParams = " + totalParams)
+    signature = GetBinanceSignature(totalParams)
+    # PrintAndLog("signature = " + signature)
+
+    url = "https://www.binance.com/wapi/v1/getWithdrawHistory.html?" + totalParams + "&signature=" + signature  # returns me weird stuff
+    PrintAndLog("url = " + url)
+
+    response = requests.post(url, headers=GetBinanceHeader(), timeout=RequestTimeout_seconds)
+    if response.ok:
+        responseData = response.content
+        jData = json.loads(responseData)
+
+        PrintAndLog("API_Post_GetWithdrawHistory jData = " + str(jData))
+        return jData
+
+    else:
+        # If response code is not ok (200), print the resulting http error code with description
+        PrintAndLog("response = " + str(response.content))
+        response.raise_for_status()
